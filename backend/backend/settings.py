@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':"webacademy",
+        'NAME':"nexy",
         'USER':os.environ["PG_USERNAME"],
         'PASSWORD':os.environ["PG_PASS"],
         'HOST': 'localhost',

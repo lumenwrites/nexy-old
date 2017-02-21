@@ -30,26 +30,14 @@ class Post(models.Model):
     score = models.IntegerField(default=0)
 
 
-    TYPES = (
-        ("article", "Article"),
-        ("book", "Book"),        
-        ("video", "Video"),
-        # ("course", "Course"),        
-    )    
-    LEVELS = (
-        ("all", "All"),
-        ("beginner", "Beginner"),
-        ("intermediate", "Intermediate"),
-        ("advanced", "Advanced"),                
-    )
-    PRICES = (
-        ("free", "Free"),
-        ("paid", "Paid"),
-    )    
+    # TYPES = (
+    #     ("link", "Link"),
+    #     ("text", "Text"),
+    #     ("image", "Image"),                
+    # )    
 
-    post_type = models.CharField(default="video", max_length=64, choices=TYPES, blank=True)    
-    post_level = models.CharField(default="all", max_length=64, choices=LEVELS, blank=True)
-    post_price = models.CharField(default="free", max_length=64, choices=PRICES, blank=True)    
+    # post_type = models.CharField(default="link", max_length=64, choices=TYPES, blank=True)    
+
 
 
 
