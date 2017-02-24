@@ -17,7 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-# from actstream import urls
+
 
 from posts import urls as posts_urls
 from profiles import urls as profiles_urls
@@ -25,7 +25,6 @@ from comments import urls as comments_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url('^activity/', include('actstream.urls')),
 
     url(r'', include(posts_urls)),
     url(r'', include(comments_urls)),            

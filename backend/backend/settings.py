@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',    
-    'actstream',
 
     'posts',
     'tags',
@@ -151,14 +150,3 @@ AUTH_USER_MODEL = 'profiles.User'
 
 
 # APPEND_SLASH = False
-
-
-# ActivityPub
-
-ACTSTREAM_SETTINGS = {
-    'MANAGER': 'posts.managers.PostsActionManager',
-    'FETCH_RELATIONS': True,
-    'USE_PREFETCH': True,
-    'USE_JSONFIELD': False,
-    'GFK_FETCH_DEPTH': 1,
-}

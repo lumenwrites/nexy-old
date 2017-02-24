@@ -1,5 +1,4 @@
-from django.http import HttpResponse
-from actstream import action
+from django.http import JsonResponse
 from posts.models import Post
 
 from .models import Post
@@ -8,11 +7,19 @@ from .models import Post
 def posts_stream(request):
     posts = Post.objects.all()
 
-    action.send(request.user, verb='reached level 10')
-    stream = ""
+    stream = []
     for post in posts:
-        activity = post.title + " " + post.url
-        stream += activity
+        data = {}
+        data['@context'] = 'http://nexy.io/feed/posts/new'
+        data['id'] = post.get_absolute_url()
+        data['type'] = 'Article'
+        data['name'] = post.title
+        data['content'] = post.body
+        data['attributedTo'] = 'http://nexy.io/@rayalez'
+        # json_data = json.dumps(data)
+        stream.append(data)
     
-    return HttpResponse(stream)
+    # return HttpResponse(stream)
+    return JsonResponse(stream, safe=False)
+
 

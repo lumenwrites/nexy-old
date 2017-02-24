@@ -22,5 +22,4 @@ urlpatterns = [
 
     # Activities
     url(r'^stream/posts/$', posts_stream),        
-    
 ]
