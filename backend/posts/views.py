@@ -1,5 +1,4 @@
 
-
 from django.views.generic import View
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -55,16 +54,16 @@ class FilterMixin(object):
 
 
 
-        # Sort
+        # Sorting
         # (Turns queryset into the list, can't just .filter() later
-        # sorting = self.request.GET.get('sorting')
-        # if sorting == 'top':
-        #     qs = qs.order_by('-score')
-        # elif sorting == 'new':
-        #     qs = qs.order_by('-pub_date')
-        # else:
-        #     qs = rank_hot(qs)
-        qs = qs.order_by('-score', '-pub_date')
+        sorting = self.request.GET.get('sorting')
+        if sorting == 'top':
+            qs = qs.order_by('-score')
+        elif sorting == 'new':
+            qs = qs.order_by('-pub_date')
+        else:
+            qs = rank_hot(qs)
+
         
         return qs
 
@@ -108,6 +107,10 @@ class FilterMixin(object):
             category = Category.objects.get(slug=category)
             context['category'] = category.title
 
+
+        sorting = self.request.GET.get('sorting')
+        if sorting:
+            context['sorting'] = sorting
             
         # Query
         query = self.request.GET.get('query')

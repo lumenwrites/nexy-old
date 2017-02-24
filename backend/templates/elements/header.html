@@ -61,11 +61,16 @@
 	<!-- Sorting -->
 	<div class="dropdown">
 	  <a class="btn btn-default" data-toggle="dropdown">
+	    {% if sorting %}
+	    {{sorting | title}}
+	    {% else %}
 	    Hot
+	    {% endif %}	    
 	  </a>
-	  <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Top</a></li>
-            <li><a href="#">New</a></li>
+	  <ul class="dropdown-menu" role="menu"  id="sorting">
+            <li><a href="hot">Hot</a></li>	    
+            <li><a href="top">Top</a></li>
+            <li><a href="new">New</a></li>
           </ul>	
 	</div>
 	

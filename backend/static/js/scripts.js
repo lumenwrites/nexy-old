@@ -58,8 +58,9 @@ $(document).ready(function() {
 	var filter = $(this).parent().parent().attr('id');
 	/* Add the value to GET request */
 	var url = $.query.set(filter, value);
+	console.log(value);
 	/* If the value is set back to default - remove it. */
-	if (value == 'all') {
+	if (value == 'all' || value == 'hot') {
 	    url = $.query.REMOVE(filter);	    
 	}
 	/* Go to the url */

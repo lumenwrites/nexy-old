@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Source
+
+
+class SourceAdmin(admin.ModelAdmin):
+    search_fields = ['url']
+
+admin.site.register(Source, SourceAdmin)
+

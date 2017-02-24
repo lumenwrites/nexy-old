@@ -3,6 +3,7 @@ from django.conf.urls import url
 from .views import BrowseView, TagView
 from .views import PostDetailView, post_create, post_edit, post_delete
 from .views import upvote, unupvote
+from .activities import posts_stream
 
 urlpatterns = [
     url(r'^$', BrowseView.as_view()),
@@ -18,5 +19,8 @@ urlpatterns = [
 
     url(r'^upvote/$', upvote),
     url(r'^unupvote/$', unupvote),
+
+    # Activities
+    url(r'^stream/posts/$', posts_stream),        
     
 ]
