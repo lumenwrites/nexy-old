@@ -1,6 +1,8 @@
-from django.http import JsonResponse
-from posts.models import Post
+import requests
 
+from django.http import HttpResponse, JsonResponse
+
+from core.models import Source
 from .models import Post
 
 
@@ -23,3 +25,25 @@ def posts_stream(request):
     return JsonResponse(stream, safe=False)
 
 
+
+def posts_fetch(request):
+    sources = Source.objects.all()
+
+    posts = []
+    for source in sources:
+        r = requests.get(url=source.url)
+        posts_list = r.json()
+        for post in posts_list:
+            title = post['name']
+            content = post['content']
+            source = post['@context']
+            url = post['id']
+            author = post['attributedTo']        
+    
+            post = Post(title=title,
+                        body=content,
+                        url=url)
+            posts.append(post)
+        
+        
+    return HttpResponse(posts)
