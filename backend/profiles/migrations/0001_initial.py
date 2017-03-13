@@ -11,8 +11,6 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('posts', '__first__'),
-        ('comments', '__first__'),        
     ]
 
     operations = [
