@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('posts', '__first__'),
-        ('users', '__first__'),        
+        ('comments', '__first__'),        
     ]
 
     operations = [
