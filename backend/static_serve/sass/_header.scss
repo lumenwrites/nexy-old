@@ -26,10 +26,14 @@ header {
 	    display: none;
 	}
     }
+
+    .tagline {
+	margin: 10px;
+	color: $gray;
+    }
     
     form {
-	float: left;
-	width: calc(100% - 50px);
+	float: right;
 
 	@media  (max-width: 500px) {
 	    width: 100%;
