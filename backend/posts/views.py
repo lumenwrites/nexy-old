@@ -7,6 +7,8 @@ from django.db.models import Q, Count
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template.defaultfilters import slugify
+from django.views.decorators.csrf import csrf_exempt
+
 
 from comments.utils import get_comment_list
 
@@ -17,6 +19,7 @@ from core.utils import rank_hot
 from tags.models import Tag
 from categories.models import Category
 from comments.models import Comment
+from profiles.models import User
 
 class FilterMixin(object):
     paginate_by = 15
@@ -355,3 +358,43 @@ def post_create(request):
         return render(request, 'posts/create.html', {
             'submitform':form,
         })
+
+
+@csrf_exempt
+def post_create_from_activity(request):
+    if request.method == 'POST':
+        title = request.POST.get('name')
+        url = request.POST.get('id')
+        post = Post(title=title, url=url)
+        post.author = User.objects.get(username="rayalez")
+        post.score += 1
+        post.save()
+
+        # request.user.upvoted.add(post)
+
+        # Add tags
+        # tags = request.POST.get('tags')
+        # if tags:
+        #     tags = tags.split(",")
+        #     for tag in tags:
+        #         title = tag.strip()
+        #         slug = slugify(title)
+        #         # Get tag by slug. Create tag if it doesn't exist.
+        #         try: 
+        #             tag = Tag.objects.get(slug=slug)
+        #         except:
+        #             tag = Tag.objects.create(title=tag)
+        #         post.tags.add(tag)
+
+        # Add category
+        # category = request.POST.get('post_category')
+        # if category:
+        #     category = Category.objects.get(slug=category)
+        #     post.category = category
+        # post.save()
+
+        # Return "accepted" response.
+        return HttpResponse(status=202)
+    else:
+        # otherwise return an error
+        return HttpResponse(status=503)        

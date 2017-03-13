@@ -3,7 +3,6 @@ from django.conf.urls import url
 from .views import BrowseView, TagView
 from .views import PostDetailView, post_create, post_edit, post_delete
 from .views import upvote, unupvote
-from .views import post_create_from_activity
 from .activities import posts_stream, posts_fetch
 
 urlpatterns = [
@@ -23,6 +22,5 @@ urlpatterns = [
 
     # Activities
     url(r'^stream/posts/$', posts_stream),
-    url(r'^fetch/posts/$', posts_fetch),
-    url(r'^inbox$', post_create_from_activity),    
+    url(r'^fetch/posts/$', posts_fetch),            
 ]

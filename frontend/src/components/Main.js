@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../actionCreators';
 
 import Header from './Header';
+import Footer from './Footer';
 
 const Main = React.createClass({
     render() {
@@ -15,6 +16,7 @@ const Main = React.createClass({
 		<Header />
 		<div className="container">		
 		    {React.cloneElement(this.props.children, this.props)}
+		    <Footer />
 		</div>
 	    </div>
 	)
